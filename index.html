@@ -1,15 +1,22 @@
 <body></body>
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
-<input type="file" id="gif-input" accept="image/gif,image/*" style="position:fixed;top:16px;left:16px;z-index:1000;"> 
 <script>
   /* global nn */
-  let gifSrc = "kirby.gif"
+  let gifSrc = 'kirby.gif'
   
-  document.getElementById('gif-input').addEventListener('change', function() {
-    const file = this.files[0]
-    if (!file) return
-    gifSrc = URL.createObjectURL(file)
-  })
+  nn.create('input')
+    .set('type', 'file')
+    .set('accept', 'image/gif,image/*')
+    .css('position', 'fixed')
+    .css('top', '16px')
+    .css('left', '16px')
+    .css('z-index', '1000')
+    .on('change', function(){
+      const file = this.files[0]
+      if (!file) return
+      gifSrc = URL.createObjectURL(file)
+    })
+    .addTo('body')
   
 
   function draw () {
