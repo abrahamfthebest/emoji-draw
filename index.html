@@ -4,17 +4,56 @@
   /* global nn */
   let gifSrc = null
   
+  nn.create('label')
+    .content('GIF:')
+    .css('position','fixed')
+    .css('top','16px')
+    .css('left','16px')
+    .css('z-index','1000')
+    .css('color','black')
+    .css('font-family','sans-serif')
+    .css('font-size','12px')
+    .addTo('body')
+  
   nn.create('input')
     .set('type', 'file')
     .set('accept', 'image/gif,image/*')
     .css('position', 'fixed')
-    .css('top', '16px')
+    .css('top', '32px')
     .css('left', '16px')
     .css('z-index', '1000')
     .on('change', function(){
       const file = this.files[0]
       if (!file) return
       gifSrc = URL.createObjectURL(file)
+    })
+    .addTo('body')
+  
+  nn.create('label')
+    .content('IMAGE:')
+    .css('position','fixed')
+    .css('top','60px')
+    .css('left','16px')
+    .css('z-index','1000')
+    .css('color','black')
+    .css('font-family','sans-serif')
+    .css('font-size','12px')
+    .addTo('body')
+  
+  nn.create('input')
+    .set('type', 'file')
+    .set('accept', 'image/*')
+    .css('position', 'fixed')
+    .css('top', '80px')
+    .css('left', '16px')
+    .css('z-index', '1000')
+    .on('change', function(){
+      const file = this.files[0]
+      if(!file) return
+      const url = URL.createObjectURL(file)
+      document.body.style.backgroundImage = `url(${url})`
+      document.body.style.backgroundSize = 'cover'
+      document.body.style.backgroundRepeat = 'no-repeat'
     })
     .addTo('body')
   
